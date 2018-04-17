@@ -86,8 +86,4 @@
       registry_bootstrap: "{{ registry_bootstrap | default('') }}"
   when: item.value
 
-- name: set etcd restart cron
-  template: src=etcd.cron.j2 dest=/etc/cron.d/etcd.cron
-  when: is_lain_manager
-
 # vim: set ft=ansible.yaml:
