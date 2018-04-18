@@ -1,0 +1,5 @@
+- name: reload systemd for webrouter
+  command: systemctl daemon-reload
+
+- name: restart webrouter
+  service: name=rebellion state=restarted

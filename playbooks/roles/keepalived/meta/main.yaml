@@ -1,0 +1,5 @@
+dependencies:
+  - role: os-dependent-vars
+  - role: config
+  - role: binary
+  - role: libraries

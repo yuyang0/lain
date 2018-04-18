@@ -1,0 +1,23 @@
+- name: install keepalived
+  package:
+    name: keepalived
+    state: latest
+
+- name: copy keepalived.conf
+  copy:
+    src: keepalived.conf
+    dest: /etc/keepalived/keepalived.conf
+    force: no
+
+- name: copy keepalived.tmpl
+  copy: src=keepalived.tmpl dest=/etc/keepalived/keepalived.tmpl
+
+- name: copy check_webrouter.sh
+  copy:
+    src: check_webrouter.sh
+    dest: /etc/keepalived/check_webrouter.sh
+    force: yes
+    mode: a+x
+
+- name: reload keepalived service
+  service: name=keepalived enabled=yes state=reloaded

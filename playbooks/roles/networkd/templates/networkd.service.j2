@@ -13,7 +13,6 @@ ExecStart=/usr/bin/networkd {% if domain == 'lain.local' and vip == '0.0.0.0' %}
           --tinydns \
           --swarm \
           --deployd \
-          --webrouter \
           --streamrouter \
           --godns.addr=0.0.0.0:53
 

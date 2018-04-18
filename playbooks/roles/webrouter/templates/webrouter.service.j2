@@ -1,0 +1,17 @@
+[Unit]
+Description=webrouter
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run \
+          --name %n --restart=always --network=host \
+          -v {{ lain_data_dir }}/webrouter/var/logs:/lain/logs \
+          -v {{ lain_data_dir }}/webrouter/lain/log/nginx:/var/log/nginx/ \
+          {{ webrouter_image }}
+ExecStop=/bin/bash -c '/usr/bin/docker stop %n || true'
+
+[Install]
+WantedBy=multi-user.target

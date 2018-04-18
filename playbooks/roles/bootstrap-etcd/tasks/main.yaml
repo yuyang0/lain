@@ -35,7 +35,7 @@
     etcd_client_port: "{{ etcd_client_port }}"
 
 - set_fact:
-    protected_apps_data: ["console", "registry", "tinydns", "sso", "webrouter", "lvault"]
+    protected_apps_data: ["console", "registry", "tinydns", "sso", "lvault"]
 
 - name: protect important apps
   etcd_set_key:

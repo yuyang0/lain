@@ -1,0 +1,10 @@
+- name: reload systemd for keepalived
+  command: systemctl daemon-reload
+
+- name: restart keepalived
+  service: name=keepalived state=restarted
+
+- name: regenerate keepalived config
+  template: src=keepalived.conf.j2
+
+# vim: set filetype=ansible.yaml:

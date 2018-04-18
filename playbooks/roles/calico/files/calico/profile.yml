@@ -10,14 +10,8 @@
       destination: {}
       source: {}
     ingress:
-    - action: allow
       destination: {}
-      source:
-        tag: lain
-    - action: allow
-      destination: {}
-      source:
-        tag: backupctl
+      source: {}
 - apiVersion: v1
   kind: profile
   metadata:
@@ -32,12 +26,7 @@
     ingress:
     - action: allow
       destination: {}
-      source:
-        tag: lain
-    - action: allow
-      destination: {}
-      source:
-        tag: console
+      source: {}
 - apiVersion: v1
   kind: profile
   metadata:
@@ -52,8 +41,7 @@
     ingress:
     - action: allow
       destination: {}
-      source:
-        tag: lain
+      source: {}
 - apiVersion: v1
   kind: profile
   metadata:
@@ -68,12 +56,7 @@
     ingress:
     - action: allow
       destination: {}
-      source:
-        tag: lain
-    - action: allow
-      destination: {}
-      source:
-        tag: lvault
+      source: {}
 - apiVersion: v1
   kind: profile
   metadata:
@@ -88,12 +71,7 @@
     ingress:
     - action: allow
       destination: {}
-      source:
-        tag: lain
-    - action: allow
-      destination: {}
-      source:
-        tag: registry
+      source: {}
 - apiVersion: v1
   kind: profile
   metadata:
@@ -107,67 +85,5 @@
       source: {}
     ingress:
     - action: allow
-      destination:
-        ports:
-        - 5555
-      protocol: udp
-      source: {}
-    - action: allow
-      destination:
-        ports:
-        - 53
-      protocol: udp
-      source: {}
-    - action: allow
-      destination: {}
-      source:
-        tag: lain
-    - action: allow
-      destination: {}
-      source:
-        tag: tinydns
-- apiVersion: v1
-  kind: profile
-  metadata:
-    name: webrouter
-    tags:
-    - webrouter
-    - lain
-  spec:
-    egress:
-    - action: allow
       destination: {}
       source: {}
-    ingress:
-    - action: allow
-      destination:
-        ports:
-        - 80
-      protocol: tcp
-      source: {}
-    - action: allow
-      destination:
-        ports:
-        - 8080
-      protocol: tcp
-      source: {}
-    - action: allow
-      destination:
-        ports:
-        - 8443
-      protocol: tcp
-      source: {}
-    - action: allow
-      destination:
-        ports:
-        - 443
-      protocol: tcp
-      source: {}
-    - action: allow
-      destination: {}
-      source:
-        tag: lain
-    - action: allow
-      destination: {}
-      source:
-        tag: webrouter

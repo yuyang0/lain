@@ -1,0 +1,44 @@
+{{ $iface := .iface }} {{ $useUnicast := .useUnicast }}
+
+global_defs {
+#  vrrp_version {{ .vrrpVersion }}
+}
+
+vrrp_script check_webrouter {
+    script "/etc/keepalived/check_webrouter.sh"
+    interval 2
+    weight -5
+    fall 3
+    rise 2
+}
+
+{{ range $i, $inst := .vrrpInstances }}
+
+vrrp_instance VI_{{ $i }} {
+  state {{ $inst.State }}
+  interface {{ $iface }}
+  virtual_router_id {{ $inst.Vrid }}
+  priority {{ $inst.Priority }}
+  # nopreempt
+  advert_int 1
+
+  {{ if $useUnicast }}
+  unicast_src_ip {{ .myIP }}
+  unicast_peer { {{ range .nodes }}
+    {{ . }}{{ end }}
+  }
+  {{ end }}
+
+  virtual_ipaddress { {{ range $inst.Ips }}
+    {{ . }}{{ end }}
+  }
+
+  {{ if $inst.TrackScript }}
+  track_script {
+       {{ $inst.TrackScript }}
+  }
+  {{ end }}
+
+}
+
+{{ end }}
